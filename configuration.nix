@@ -20,6 +20,7 @@ in {
   services.fail2ban.enable = true;
   networking.firewall = {
   };
+  networking.hostname = "pinix";
 
   # user settings
   users.users."mpi" = {
