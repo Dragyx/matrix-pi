@@ -20,6 +20,7 @@
   outputs = {
     self,
     nixpkgs,
+    ...
   } @ inputs: {
     nixosConfigurations."pinix" = nixpkgs.lib.nixosSystem {
       modules = [
