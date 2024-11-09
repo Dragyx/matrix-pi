@@ -18,15 +18,21 @@ in {
     };
   };
   services.fail2ban.enable = true;
-  networking.firewall = {
+  networking = {
+    firewall = {
+    };
+    hostname = "pinix";
+    networkmanager.enable = true;
+    networkmanager.wifi.powersave = false;
   };
-  networking.hostname = "pinix";
-
+  time.timeZone = "Europe/Zurich";
   # user settings
   users.users."mpi" = {
     openssh.authorizeddKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP3XC/ac66Vq3hhEm0LDoRE1+dhEnaUPwHlC2AD6xIzl matrix-pi"
     ];
+    isNormalUser = true;
+    extraGroups = ["wheel"];
     shell = getExe pkgs.fish;
     initialPassword = "mpi";
   };
@@ -38,10 +44,25 @@ in {
     fish
     git
     lazygit
+    libraspberrypi
+    raspberrypi-eeprom
   ];
-
   programs.nh = {
     enable = true;
     flake = "/home/${username}/flake";
   };
+
+  # system stuff
+  # partly taken from: https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_4
+  hardware = {
+    raspberry-pi."4".apply-overlays-dtmerge.enable = true;
+    deviceTree = {
+      enable = true;
+      filter = "*rpi-4-*.dtb";
+    };
+  };
+
+  hardware.raspberry-pi."4".fkms-3d.enable = true;
+  console.enable = false;
+  system.stateVersion = "24.05";
 }
