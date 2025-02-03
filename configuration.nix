@@ -44,10 +44,16 @@ in {
     lazygit
     libraspberrypi
     raspberrypi-eeprom
+    docker-compose
   ];
   programs.nh = {
     enable = true;
     flake = "/home/${username}/flake";
+  };
+  # enable docker
+  virtualisation.docker = {
+    enable = true;
+    autoPrune.enable = true;
   };
 
   # system stuff
