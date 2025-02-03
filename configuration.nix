@@ -19,8 +19,6 @@ in {
   };
   services.fail2ban.enable = true;
   networking = {
-    firewall = {
-    };
     hostname = "pinix";
     networkmanager.enable = true;
     networkmanager.wifi.powersave = false;

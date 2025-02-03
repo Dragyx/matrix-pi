@@ -10,13 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # we use arion to manage the docker images / docker compose
-    arion = {
-      url = "github:hercules-ci/arion";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
   outputs = {
     self,
     nixpkgs,
@@ -26,9 +19,7 @@
       modules = [
         inputs.nixos-hardware.nixosModules.raspberry-pi-4
         inputs.disko.nixosModules.disko
-        inputs.arion.nixosModules.arion
         ./configuration.nix
-        ./docker.nix
         ./disk.nix
       ];
     };
