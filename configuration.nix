@@ -26,8 +26,9 @@ in {
   time.timeZone = "Europe/Zurich";
   # user settings
   users.users."mpi" = {
-    openssh.authorizeddKeys.keys = [
+    openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP3XC/ac66Vq3hhEm0LDoRE1+dhEnaUPwHlC2AD6xIzl matrix-pi"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDPDxn5uAmY2qDEIal6m698CQpDdUZcLjOfmBG7Jcy4V dragyx@flocke"
     ];
     isNormalUser = true;
     extraGroups = ["wheel"];
